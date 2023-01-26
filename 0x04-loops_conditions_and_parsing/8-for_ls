@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# script to printout directory content of non hidden files
+List="$(ls -1)"
+for i in $List; 
+do
+	echo "$i" | cut -d "-" -f2
+done
