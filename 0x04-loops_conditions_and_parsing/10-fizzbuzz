@@ -18,6 +18,6 @@ do
 		echo "Buzz"
 	else
 		echo "$num"
-	fi
+	fi;
 done
 
