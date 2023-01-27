@@ -6,14 +6,12 @@
 # Deletes the file "/var/run/myscript.pid" and terminates itself
 # when receiving a SIGQUIT or SIGTERM signal
 
-
 echo "$$" > /var/run/myscript.pid
 
 terminate() {
 	rm /var/run/myscript.pid
 	exit
 }
-
 
 while true
 do
