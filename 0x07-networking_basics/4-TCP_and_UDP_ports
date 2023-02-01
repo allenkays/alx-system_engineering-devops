@@ -1,0 +1,3 @@
+#!/usr/bin/bash
+# Listening ports
+netstat -tunlp
