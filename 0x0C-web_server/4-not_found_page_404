@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# Script to install nginx webserver and serve file
+# Nginx should listen on port 80
+sudo apt-get update
+sudo apt-get install -y nginx
+ufw allow 'Nginx HTTP'
+mkdir /etc/nginx/html
+echo "Hello World!" > /etc/nginx/html/index.html
+echo "Ceci n'est pas une page" >> /var/www/html/error_404.html
+printf %s "server {
+    listen      80 default_server;
+    listen      [::]:80 default_server;
+    root        /etc/nginx/html;
+    index       index.html index.htm;
+    location /redirect_me {
+	return 301 http://google.com/;
+    }
+    error_page 404 /404.html;
+    location {
+        root /etc/nginx/html/error_404.html;
+	internal
+    }
+}
+" > /etc/nginx/sites-available/default
+
+service nginx restart
