@@ -2,6 +2,7 @@
 
 package { 'nginx':
   ensure     => 'present',
+  provider   => 'nginx'
 }
 
 file { '/var/www/nginx/html/index.html':
