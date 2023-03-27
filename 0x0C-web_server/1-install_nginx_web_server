@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Script to install nginx webserver and serve file
+# Nginx should listen on port 80
+apt-get install -y nginx
+
+mkdir /etc/nginx/html
+echo "Holberton School" > /etc/nginx/html/index.html
+printf %s "server {
+     listen      80 default_server;
+     listen      [::]:80 default_server;
+     root        /etc/nginx/html;
+     index       index.html index.htm;
+}
+" > /etc/nginx/sites-available/default
+
+service nginx restart
