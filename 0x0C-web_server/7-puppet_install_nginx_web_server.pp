@@ -1,8 +1,7 @@
 # Setup nginx server
 
 package { 'nginx':
-  ensure     => 'present',
-  provider   => 'nginx'
+  ensure     => 'installed',
 }
 
 file { '/var/www/nginx/html/index.html':
