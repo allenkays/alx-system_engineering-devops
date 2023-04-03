@@ -4,16 +4,21 @@
 # Nginx should listen on port 80
 sudo apt-get update
 sudo apt-get install -y nginx
+
 sudo ufw allow 'Nginx HTTP'
-sudo mkdir /etc/nginx/html
-sudo echo "Hello World!" > /etc/nginx/html/index.html
-sudo printf %s "server {
+sudo mkdir -p /var/www/nginx/html/
+echo "Hello World!" > /var/www/nginx/html/index.html
+printf %s "server {
      listen      80 default_server;
      listen      [::]:80 default_server;
-     root        /etc/nginx/html;
+     root        /var/www/nginx/html;
      index       index.html index.htm;
+     add_header X-Served-By $HOSTNAME;
+
+     location /redirect_me{
+	return 301 http://google.com
+	}
 }
 " > /etc/nginx/sites-available/default
-sudo echo "add_header X-Served-By \$host;" | sudo tee -a /etc/nginx/nginx.conf
 sudo service nginx restart
 
