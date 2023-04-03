@@ -1,24 +1,11 @@
 #!/usr/bin/env bash
-# Install Nginx and configure it with custom http header response
-# Script to install nginx webserver and serve file
-# Nginx should listen on port 80
-sudo apt-get update
-sudo apt-get install -y nginx
+# to configure web-02 to be identical to web-01
 
-sudo ufw allow 'Nginx HTTP'
-sudo mkdir -p /var/www/nginx/html/
-echo "Hello World!" > /var/www/nginx/html/index.html
-printf %s "server {
-     listen      80 default_server;
-     listen      [::]:80 default_server;
-     root        /var/www/nginx/html;
-     index       index.html index.htm;
-     add_header X-Served-By $HOSTNAME;
+apt-get -y update
+apt-get -y install nginx
+ufw allow 'Nginx HTTP'
+echo 'Hello World!' > /var/www/html/index.nginx-debian.html
 
-     location /redirect_me{
-	return 301 http://google.com
-	}
-}
-" > /etc/nginx/sites-available/default
-sudo service nginx restart
-
+sed -i '/listen 80 default_server;/a rewrite ^/redirect_me https://www.google.com permanent;' /etc/nginx/sites-available/default
+sed -i '/listen 80 default_server;/a add_header X-Served-By $hostname;' /etc/nginx/sites-available/default
+service nginx start
