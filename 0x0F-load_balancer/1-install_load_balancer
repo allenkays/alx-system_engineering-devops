@@ -5,7 +5,7 @@ sudo apt-get update
 
 # Install HAProxy
 sudo apt-get install haproxy -y
-
+sudo echo "ENABLED=1" >> /etc/default/haproxy
 # Configure HAProxy
 cat <<EOT | sudo tee /etc/haproxy/haproxy.cfg > /dev/null
 frontend http_front
