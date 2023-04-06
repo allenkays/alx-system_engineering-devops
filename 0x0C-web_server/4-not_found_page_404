@@ -16,9 +16,9 @@ printf %s "server {
 	return 301 http://google.com/;
     }
     error_page 404 /error_404.html;
-    location {
-        root /etc/nginx/html/error_404.html;
-	internal
+    location /404 {
+        root /etc/nginx/html;
+	internal;
     }
 }
 " > /etc/nginx/sites-available/default
