@@ -8,31 +8,6 @@ sudo apt-get install haproxy -y
 
 # Configure HAProxy
 cat <<EOT | sudo tee /etc/haproxy/haproxy.cfg > /dev/null
-global
-    log /dev/log local0
-    log /dev/log local1 notice
-    chroot /var/lib/haproxy
-    stats socket /run/haproxy/admin.sock mode 660 level admin
-    stats timeout 30s
-    user haproxy
-    group haproxy
-    daemon
-
-defaults
-    log global
-    mode http
-    option httplog
-    option dontlognull
-    retries 3
-    timeout http-request 10s
-    timeout queue 1m
-    timeout connect 10s
-    timeout client 1m
-    timeout server 1m
-    timeout http-keep-alive 10s
-    timeout check 10s
-    maxconn 3000
-
 frontend http_front
     bind *:80
     mode http
