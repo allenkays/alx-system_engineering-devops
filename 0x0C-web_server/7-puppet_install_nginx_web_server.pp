@@ -1,7 +1,5 @@
-# Setup nginx server
-
 package { 'nginx':
-  ensure     => 'present',
+  ensure => 'present',
 }
 
 file { '/etc/nginx/html/index.html':
