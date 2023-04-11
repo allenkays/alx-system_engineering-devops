@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# Get the domain from the first command line argument
+
+domain="$1"
+
+# Get the subdomain from the second command line argument, or use the default subdomains
+if [ -n "$2" ]; then
+    subdomains=("$2")
+else
+    subdomains=(www lb-01 web-01 web-02)
+fi
+
+# Define the function to check a subdomain's DNS record
+function check_subdomain {
+    subdomain="$1"
+
+    # Use dig to retrieve the DNS record and awk to extract the relevant information
+    record=$(dig +short "${subdomain}.${domain}" | awk '{print $1}')
+    record_type=$(dig +short "${subdomain}.${domain}" | awk '{print $4}')
+
+    # Print the extracted information in a formatted string
+    printf "The subdomain %s is a %s record and points to %s\n" "${subdomain}" "${record_type}" "${record}"
+}
+
+# Iterate through the subdomains and check their DNS records
+for subdomain in "${subdomains[@]}"; do
+    check_subdomain "${subdomain}"
+done
