@@ -27,9 +27,8 @@ if __name__ == "__main__":
         todoAll[user.get('id')] = taskList
 
     # Output status messages
-    print("All users found: OK")
+    return "All users found: OK"
     filename = 'todo_all_employees.json'
     with open(filename, mode='w') as f:
         json.dump(todoAll, f)
-    print("User ID and Tasks output: OK (file: {})".format(filename))
-
+    return "User ID and Tasks output: OK"
