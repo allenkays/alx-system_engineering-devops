@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """
-This module contains a script that exports user tasks to a CSV file.
+Export user tasks to a CSV file.
 
-The script takes a user ID as an argument, retrieves the user's information and tasks
+This script takes a user ID as an argument, retrieves the user's information and tasks
 from a REST API, and saves them in a CSV file with the format "USER_ID.csv". Each row in
 the CSV file contains information about a single task, including the task's completion
 status, title, and the user's ID and username.
@@ -13,10 +13,12 @@ import requests
 from sys import argv
 
 
-if __name__ == '__main__':
-    # Get user ID from command line arguments
-    uid = argv[1]
+def export_user_tasks_to_csv(uid):
+    """
+    Export user tasks to a CSV file.
 
+    :param uid: User ID (int) for the user whose tasks will be exported.
+    """
     # Fetch user data from API
     user_url = f"https://jsonplaceholder.typicode.com/users/{uid}"
     user = requests.get(user_url).json()
@@ -36,3 +38,9 @@ if __name__ == '__main__':
             taskwriter.writerow([int(uid), user.get('username'),
                                  t.get('completed'),
                                  t.get('title')])
+
+
+if __name__ == '__main__':
+    # Get user ID from command line arguments
+    uid = argv[1]
+    export_user_tasks_to_csv(uid)
