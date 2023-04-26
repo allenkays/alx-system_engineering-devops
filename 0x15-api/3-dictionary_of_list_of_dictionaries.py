@@ -1,21 +1,17 @@
 #!/usr/bin/python3
-"""
-Extend your Python script to export data in the JSON format.
-"""
-
-import json
-import requests
-import sys
-
+"""extend your Python script to export data in the JSON format."""
 
 if __name__ == "__main__":
+    import json
+    import requests
+    import sys
+
     users = requests.get("https://jsonplaceholder.typicode.com/users")
     users = users.json()
     todos = requests.get('https://jsonplaceholder.typicode.com/todos')
     todos = todos.json()
     todoAll = {}
 
-    # Process each user and their tasks
     for user in users:
         taskList = []
         for task in todos:
@@ -25,7 +21,6 @@ if __name__ == "__main__":
                             "completed": task.get('completed')}
                 taskList.append(taskDict)
         todoAll[user.get('id')] = taskList
-    # Output status messages
-    filename = 'todo_all_employees.json'
-    with open(filename, mode='w') as f:
+
+    with open('todo_all_employees.json', mode='w') as f:
         json.dump(todoAll, f)
