@@ -2,10 +2,11 @@
 """script to export data in the CSV format"""
 
 
-import requests
-import json
-import sys
 import csv
+import json
+import requests
+import sys
+
 if __name__ == "__main__":
 
     uid = sys.argv[1]
