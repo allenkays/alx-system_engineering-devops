@@ -1,4 +1,4 @@
-!/usr/bin/python3
+#!/usr/bin/python3
 """script to export data in the CSV format"""
 
 
