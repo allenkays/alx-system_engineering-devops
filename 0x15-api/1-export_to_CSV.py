@@ -2,9 +2,10 @@
 """
 Export user tasks to a CSV file.
 
-This script takes a user ID as an argument, retrieves the user's information and tasks
-from a REST API, and saves them in a CSV file with the format "USER_ID.csv". Each row in
-the CSV file contains information about a single task, including the task's completion
+This script takes a user ID as an argument, retrieves the user's
+information and tasks from a REST API, and saves them in a CSV
+file with the format "USER_ID.csv". Each row in the CSV file
+contains information about a single task, including the task's completion
 status, title, and the user's ID and username.
 """
 
