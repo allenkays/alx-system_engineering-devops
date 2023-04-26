@@ -1,6 +1,11 @@
 #!/usr/bin/python3
 """
-Export employee TODO list progress in CSV format using REST API.
+This module contains a script that exports user tasks to a CSV file.
+
+The script takes a user ID as an argument, retrieves the user's information and tasks
+from a REST API, and saves them in a CSV file with the format "USER_ID.csv". Each row in
+the CSV file contains information about a single task, including the task's completion
+status, title, and the user's ID and username.
 """
 
 import csv
