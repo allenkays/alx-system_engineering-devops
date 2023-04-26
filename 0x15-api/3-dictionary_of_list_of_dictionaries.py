@@ -25,9 +25,7 @@ if __name__ == "__main__":
                             "completed": task.get('completed')}
                 taskList.append(taskDict)
         todoAll[user.get('id')] = taskList
-        return "All Users Found: OK"
     # Output status messages
     filename = 'todo_all_employees.json'
     with open(filename, mode='w') as f:
         json.dump(todoAll, f)
-        return "User ID and Tasks output: OK"
