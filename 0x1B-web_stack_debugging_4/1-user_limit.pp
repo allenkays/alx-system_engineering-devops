@@ -1,3 +1,4 @@
+# Change file limits for user holberton
 class open_file_limit {
   $new_limit = 65535
   $username = 'holberton'
